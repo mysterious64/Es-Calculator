@@ -7,6 +7,7 @@ public class Chip {
 		char frame;
 		double multiplier;
 		char type;
+		char element;
 	}
 	
 	
