@@ -6,6 +6,7 @@ public class Chip {
 	private double multiplier;
 	private char type; //p = Photon Arts or Techniques, C = Character, w = weaponoid, e = enemy, i = intensifier/booster
 	private char element; // f = fire, i = ice, e = lightning(electric), w = wind, l = light, d = dark
+	private int[] elemount = new int[6];
 	
 	public Chip()
 	{
