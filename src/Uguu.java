@@ -8,26 +8,38 @@ import java.awt.Label;
 import java.awt.Font;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeEvent;
+import java.awt.event.ItemListener;
+import java.awt.event.ItemEvent;
 
 public class Uguu {
 
 	double[] framemults = new double[10];//Pursuit,A,B,C,D,E,F,G,H,I in that order.
 	double total;
 	String[] CurrentChips = new String[6];
+	public String Logdata = "";
 	
 	public void calculateshit()
 	{
+		System.out.println("Hello World");//Shows that the function is properly called, nothing broke.
+		
+		//Set everything to redundant multipliers first;
 		total = 1;
+		Logdata = Logdata + "\nTotal reset.";
 		for(int i=0;i<framemults.length;i++)
 		{
-			framemults[i] = 1; //Set everything to redundant multipliers first;
+			framemults[i] = 1; 
 		}
-		//Run calculations here, one single function for everything to call.
+		Logdata = Logdata + "\nFrame Multipliers reset.";
 		
+		//Run calculations here, one single function for everything to call.
+		Logdata = Logdata + "\nCalculations Block Finished.";
+		
+		//Multiply all frames together afterwards.
 		for(int i=0;i<framemults.length;i++)
 		{
 			total = total * framemults[i];
 		}
+		Logdata = Logdata + "\nTotal set.";
 	}
 	private JFrame frame;
 
@@ -87,141 +99,177 @@ public class Uguu {
 		FriendPlaceholder.setBounds(509, 21, 81, 81);
 		frame.getContentPane().add(FriendPlaceholder);
 		
-		Choice SPChoice = new Choice();
-		SPChoice.addPropertyChangeListener(new PropertyChangeListener() {
-			public void propertyChange(PropertyChangeEvent arg0) {
-				
-			}
-		});
-		SPChoice.setBounds(10, 108, 81, 20);
-		frame.getContentPane().add(SPChoice);
-		
-		Choice Secondchoice = new Choice();
-		Secondchoice.setBounds(120, 108, 81, 20);
-		frame.getContentPane().add(Secondchoice);
-		
-		Choice Thirdchoice = new Choice();
-		Thirdchoice.setBounds(211, 108, 81, 20);
-		frame.getContentPane().add(Thirdchoice);
-		
-		Choice Fourthchoice = new Choice();
-		Fourthchoice.setBounds(302, 108, 81, 20);
-		frame.getContentPane().add(Fourthchoice);
-		
-		Choice Fifthchoice = new Choice();
-		Fifthchoice.setBounds(393, 108, 81, 20);
-		frame.getContentPane().add(Fifthchoice);
-		
-		Choice Friendchoice = new Choice();
-		Friendchoice.setBounds(509, 108, 81, 20);
-		frame.getContentPane().add(Friendchoice);
-		
-		TextField textField = new TextField();
-		textField.setText("100");
-		textField.setFont(new Font("Dialog", Font.PLAIN, 14));
-		textField.setEditable(false);
-		textField.setBounds(61, 229, 45, 22);
-		frame.getContentPane().add(textField);
+		TextField AMult = new TextField();
+		AMult.setText("1.0");
+		AMult.setFont(new Font("Dialog", Font.PLAIN, 14));
+		AMult.setEditable(false);
+		AMult.setBounds(61, 229, 45, 22);
+		frame.getContentPane().add(AMult);
 		
 		Label label = new Label("A");
 		label.setBounds(75, 201, 22, 22);
 		frame.getContentPane().add(label);
 		
-		TextField textField_1 = new TextField();
-		textField_1.setFont(new Font("Dialog", Font.PLAIN, 14));
-		textField_1.setText("100");
-		textField_1.setEditable(false);
-		textField_1.setBounds(112, 229, 45, 22);
-		frame.getContentPane().add(textField_1);
+		TextField BMult = new TextField();
+		BMult.setFont(new Font("Dialog", Font.PLAIN, 14));
+		BMult.setText("1.0");
+		BMult.setEditable(false);
+		BMult.setBounds(112, 229, 45, 22);
+		frame.getContentPane().add(BMult);
 		
 		Label label_1 = new Label("B");
 		label_1.setBounds(126, 201, 22, 22);
 		frame.getContentPane().add(label_1);
 		
-		TextField textField_2 = new TextField();
-		textField_2.setText("100");
-		textField_2.setFont(new Font("Dialog", Font.PLAIN, 14));
-		textField_2.setEditable(false);
-		textField_2.setBounds(163, 229, 45, 22);
-		frame.getContentPane().add(textField_2);
+		TextField CMult = new TextField();
+		CMult.setText("1.0");
+		CMult.setFont(new Font("Dialog", Font.PLAIN, 14));
+		CMult.setEditable(false);
+		CMult.setBounds(163, 229, 45, 22);
+		frame.getContentPane().add(CMult);
 		
 		Label label_2 = new Label("C");
 		label_2.setBounds(177, 201, 22, 22);
 		frame.getContentPane().add(label_2);
 		
-		TextField textField_3 = new TextField();
-		textField_3.setText("100");
-		textField_3.setFont(new Font("Dialog", Font.PLAIN, 14));
-		textField_3.setEditable(false);
-		textField_3.setBounds(214, 229, 45, 22);
-		frame.getContentPane().add(textField_3);
+		TextField DMult = new TextField();
+		DMult.setText("1.0");
+		DMult.setFont(new Font("Dialog", Font.PLAIN, 14));
+		DMult.setEditable(false);
+		DMult.setBounds(214, 229, 45, 22);
+		frame.getContentPane().add(DMult);
 		
 		Label label_3 = new Label("D");
 		label_3.setBounds(228, 201, 22, 22);
 		frame.getContentPane().add(label_3);
 		
-		TextField textField_4 = new TextField();
-		textField_4.setFont(new Font("Dialog", Font.PLAIN, 14));
-		textField_4.setText("100");
-		textField_4.setEditable(false);
-		textField_4.setBounds(10, 229, 45, 22);
-		frame.getContentPane().add(textField_4);
+		TextField PursuitMult = new TextField();
+		PursuitMult.setFont(new Font("Dialog", Font.PLAIN, 14));
+		PursuitMult.setText("1.0");
+		PursuitMult.setEditable(false);
+		PursuitMult.setBounds(10, 229, 45, 22);
+		frame.getContentPane().add(PursuitMult);
 		
 		Label label_4 = new Label("Pursuit");
 		label_4.setBounds(10, 201, 37, 22);
 		frame.getContentPane().add(label_4);
 		
-		TextField textField_5 = new TextField();
-		textField_5.setText("100");
-		textField_5.setFont(new Font("Dialog", Font.PLAIN, 14));
-		textField_5.setEditable(false);
-		textField_5.setBounds(265, 229, 45, 22);
-		frame.getContentPane().add(textField_5);
+		TextField EMult = new TextField();
+		EMult.setText("1.0");
+		EMult.setFont(new Font("Dialog", Font.PLAIN, 14));
+		EMult.setEditable(false);
+		EMult.setBounds(265, 229, 45, 22);
+		frame.getContentPane().add(EMult);
 		
 		Label label_5 = new Label("E");
 		label_5.setBounds(279, 201, 22, 22);
 		frame.getContentPane().add(label_5);
 		
-		TextField textField_6 = new TextField();
-		textField_6.setText("100");
-		textField_6.setFont(new Font("Dialog", Font.PLAIN, 14));
-		textField_6.setEditable(false);
-		textField_6.setBounds(316, 229, 45, 22);
-		frame.getContentPane().add(textField_6);
+		TextField FMult = new TextField();
+		FMult.setText("1.0");
+		FMult.setFont(new Font("Dialog", Font.PLAIN, 14));
+		FMult.setEditable(false);
+		FMult.setBounds(316, 229, 45, 22);
+		frame.getContentPane().add(FMult);
 		
 		Label label_6 = new Label("F");
 		label_6.setBounds(330, 201, 22, 22);
 		frame.getContentPane().add(label_6);
 		
-		TextField textField_7 = new TextField();
-		textField_7.setText("100");
-		textField_7.setFont(new Font("Dialog", Font.PLAIN, 14));
-		textField_7.setEditable(false);
-		textField_7.setBounds(367, 229, 45, 22);
-		frame.getContentPane().add(textField_7);
+		TextField GMult = new TextField();
+		GMult.setText("1.0");
+		GMult.setFont(new Font("Dialog", Font.PLAIN, 14));
+		GMult.setEditable(false);
+		GMult.setBounds(367, 229, 45, 22);
+		frame.getContentPane().add(GMult);
 		
 		Label label_7 = new Label("G");
 		label_7.setBounds(381, 201, 22, 22);
 		frame.getContentPane().add(label_7);
 		
-		TextField textField_8 = new TextField();
-		textField_8.setFont(new Font("Dialog", Font.PLAIN, 14));
-		textField_8.setText("100");
-		textField_8.setEditable(false);
-		textField_8.setBounds(418, 229, 45, 22);
-		frame.getContentPane().add(textField_8);
+		TextField HMult = new TextField();
+		HMult.setFont(new Font("Dialog", Font.PLAIN, 14));
+		HMult.setText("1.0");
+		HMult.setEditable(false);
+		HMult.setBounds(418, 229, 45, 22);
+		frame.getContentPane().add(HMult);
 		
 		Label label_8 = new Label("H");
 		label_8.setBounds(432, 201, 22, 22);
 		frame.getContentPane().add(label_8);
 		
-		TextField textField_9 = new TextField();
-		textField_9.setEditable(false);
-		textField_9.setBounds(545, 229, 45, 22);
-		frame.getContentPane().add(textField_9);
+		TextField TotalMult = new TextField();
+		TotalMult.setEditable(false);
+		TotalMult.setBounds(545, 229, 45, 22);
+		frame.getContentPane().add(TotalMult);
+		
 		
 		Label label_9 = new Label("Total");
 		label_9.setBounds(545, 201, 36, 22);
 		frame.getContentPane().add(label_9);
+		
+		Choice SPChoice = new Choice();
+		SPChoice.addItemListener(new ItemListener() {
+			public void itemStateChanged(ItemEvent arg0) {
+				calculateshit();
+				TotalMult.setText(Double.toString(total));
+			}
+		});
+		SPChoice.add("Test1");
+		SPChoice.add("Test2");
+		SPChoice.setBounds(10, 108, 81, 20);
+		frame.getContentPane().add(SPChoice);
+		
+		Choice Secondchoice = new Choice();
+		Secondchoice.addItemListener(new ItemListener() {
+			public void itemStateChanged(ItemEvent e) {
+				calculateshit();
+				TotalMult.setText(Double.toString(total));
+			}
+		});
+		Secondchoice.setBounds(120, 108, 81, 20);
+		frame.getContentPane().add(Secondchoice);
+		
+		Choice Thirdchoice = new Choice();
+		Thirdchoice.addItemListener(new ItemListener() {
+			public void itemStateChanged(ItemEvent e) {
+				calculateshit();
+				TotalMult.setText(Double.toString(total));
+			}
+		});
+		Thirdchoice.setBounds(211, 108, 81, 20);
+		frame.getContentPane().add(Thirdchoice);
+		
+		Choice Fourthchoice = new Choice();
+		Fourthchoice.addItemListener(new ItemListener() {
+			public void itemStateChanged(ItemEvent e) {
+				calculateshit();
+				TotalMult.setText(Double.toString(total));
+			}
+		});
+		Fourthchoice.setBounds(302, 108, 81, 20);
+		frame.getContentPane().add(Fourthchoice);
+		
+		Choice Fifthchoice = new Choice();
+		Fifthchoice.addItemListener(new ItemListener() {
+			public void itemStateChanged(ItemEvent e) {
+				calculateshit();
+				TotalMult.setText(Double.toString(total));
+			}
+		});
+		Fifthchoice.setBounds(393, 108, 81, 20);
+		frame.getContentPane().add(Fifthchoice);
+		
+		Choice Friendchoice = new Choice();
+		Friendchoice.addItemListener(new ItemListener() {
+			public void itemStateChanged(ItemEvent e) {
+				calculateshit();
+				TotalMult.setText(Double.toString(total));
+			}
+		});
+		Friendchoice.setBounds(509, 108, 81, 20);
+		frame.getContentPane().add(Friendchoice);
+		
+		
 	}
 }
